@@ -7,6 +7,7 @@
     'website': 'https://arkana.co.id',
     'depends': ['base'],
     'data': [
+        'views/contact_view.xml',
     ],
     'license': 'LGPL-3',
 }

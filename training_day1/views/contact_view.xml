@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Search View Individual Action -->
+    <record model="ir.ui.view" id="contact_individual_search_view">
+        <field name="name">res.partner.search.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+
+                <filter name="indonesian_contact" string="Indonesia" domain="[('country_id','=', 'Indonesia')]"/>
+                
+                <group>
+                    <filter name="group_country_id" string="Country" context="{'group_by':'country_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- action contact individual -->
+    <record id="contact_individual_action" model="ir.actions.act_window">
+        <field name="name">Individual</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_company', '=', False)]</field>
+        <field name="search_view_id" ref="contact_individual_search_view"/>
+    </record>
+
+    <!-- action contact company -->
+    <record id="contact_company_action" model="ir.actions.act_window">
+        <field name="name">Company</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('is_company', '=', True)]</field>
+    </record>
+
+    <!-- menu contact individual -->
+    <menuitem
+        id="contact_individual_menu"
+        name="Individual"
+        parent="contacts.menu_contacts"
+        action="contact_individual_action"
+    />
+
+    <!-- menu contact company -->
+    <menuitem
+        id="contact_company_menu"
+        name="Company"
+        parent="contacts.menu_contacts"
+        action="contact_company_action"
+    />
+
+    <!-- tree view individual contact -->
+    <record id="res_partner_individual_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.individual.view.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="display_name" />
+                <field name="phone" />
+                <field name="email" />
+                <field name="country_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- link tree view with action window individual -->
+    <record id="action_contact_individual_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="act_window_id" ref="contact_individual_action" />
+        <field name="view_id" ref="res_partner_individual_view_tree" />
+    </record>
+
+    <!-- form view individual action -->
+    <record id="res_partner_individual_view_form" model="ir.ui.view">
+        <field name="name">res.partner.individual.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="phone" required="1" />
+                        <field name="email" required="1" />
+                        <field name="country_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- link form view with action window individual -->
+    <record id="action_contact_individual_form_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">form</field>
+        <field name="act_window_id" ref="contact_individual_action" />
+        <field name="view_id" ref="res_partner_individual_view_form" />
+    </record>
+
+</odoo>
