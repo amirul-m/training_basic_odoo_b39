@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action window Training Class -->
+    <record id="training_class_action" model="ir.actions.act_window">
+        <field name="name">Training Class</field>
+        <field name="res_model">training.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu utama Training -->
+    <menuitem
+        id="training_parent_menu"
+        name="Training"
+        sequence="21"
+    />
+
+    <!-- Menu header -->
+    <menuitem
+        id="training_class_menu"
+        name="Training Class"
+        parent="training_parent_menu"
+        action="training_class_action"
+        sequence="1"
+    />
+
+    <!-- Tree View Training Class -->
+    <record id="training_class_view_tree" model="ir.ui.view">
+        <field name="name">training.class.view.tree</field>
+        <field name="model">training.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="max_person" />
+                <field name="duration_hour" />
+                <field name="class_type" />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view training class -->
+    <record id="training_class_view_form" model="ir.ui.view">
+        <field name="name">training.class.view.form</field>
+        <field name="model">training.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="group_kiri" string="Group 1">
+                            <field name="name" />
+                            <field name="max_person" />
+                            <field name="duration_hour" />
+                            <field name="duration_days"/>
+                            <field name="class_type" />
+                        </group>
+
+                        <group name="group_kanan" string="Group 2">
+                            <field name="active" widget="boolean_toggle" />
+                            <field name="mentor_id" />
+                            <field name="tag_ids" widget="many2many_tags"
+                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}" />
+                            <field name="description" />
+                        </group>
+
+                        <group string="Group 3">
+                            <field name="start_date" />
+                            <field name="end_datetime" />
+                            <field name="training_file" />
+                            <field name="logo" widget="image" />
+                        </group>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
