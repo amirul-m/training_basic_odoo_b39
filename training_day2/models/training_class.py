@@ -22,6 +22,16 @@ class TrainingClass(models.Model):
     duration_days = fields.Integer('Durasi (Hari)', compute='_compute_duration_days')
     phone_mentor_id = fields.Char('Phone', related='mentor_id.phone')
     member_ids = fields.One2many('training.class.member', 'training_id', string='Members')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirm', 'Confirmed')
+    ], string='Status', default='draft')
+
+    def action_confirm(self):
+        self.state = 'confirm'
+    
+    def action_draft(self):
+        self.state = 'draft'
 
     @api.depends('start_date', 'end_datetime')
     def _compute_duration_days(self):

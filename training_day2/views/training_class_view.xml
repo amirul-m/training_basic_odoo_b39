@@ -45,22 +45,31 @@
         <field name="model">training.class</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" />
+                    <button string="Confirm" name="action_confirm" type="object"
+                        class="oe_highlight" invisible="state != 'draft'" />
+                    <button string="Set To Draft" name="action_draft" type="object"
+                        class="oe_highlight" invisible="state != 'confirm'" />
+                </header>
                 <sheet>
                     <group>
                         <group name="group_kiri" string="Group 1">
                             <field name="name" />
                             <field name="max_person" />
                             <field name="duration_hour" />
-                            <field name="duration_days"/>
+                            <field name="duration_days" />
                             <field name="class_type" />
                         </group>
 
                         <group name="group_kanan" string="Group 2">
                             <field name="active" widget="boolean_toggle" />
-                            <field name="mentor_id" domain="[('country_id', '=', 'Indonesia')]" />
+                            <field name="mentor_id"
+                                domain="[('country_id', '=', 'Indonesia')]" />
                             <field name="phone_mentor_id" />
                             <field name="tag_ids" widget="many2many_tags"
-                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}" required="mentor_id" />
+                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}"
+                                required="mentor_id" />
                             <field name="description" readonly="1" force_save="1" />
                         </group>
 
@@ -75,8 +84,8 @@
                             <page name="page_members" string="Members">
                                 <field name="member_ids">
                                     <tree editable="bottom">
-                                        <field name="name"/>
-                                        <field name="hadir"/>
+                                        <field name="name" />
+                                        <field name="hadir" />
                                     </tree>
                                 </field>
                             </page>
