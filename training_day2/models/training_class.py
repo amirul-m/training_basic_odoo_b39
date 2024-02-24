@@ -21,6 +21,7 @@ class TrainingClass(models.Model):
     tag_ids = fields.Many2many('res.partner.category', string='Tags')
     duration_days = fields.Integer('Durasi (Hari)', compute='_compute_duration_days')
     phone_mentor_id = fields.Char('Phone', related='mentor_id.phone')
+    member_ids = fields.One2many('training.class.member', 'training_id', string='Members')
 
     @api.depends('start_date', 'end_datetime')
     def _compute_duration_days(self):
@@ -47,3 +48,11 @@ class TrainingClass(models.Model):
     @api.onchange('mentor_id', 'start_date', 'end_datetime')
     def _onchange_for_description(self):
         self.description = f"Mentor: {self.mentor_id.name}\nStart Date: {self.start_date}\nEnd Datetime: {self.end_datetime}"
+
+
+class TrainingClassMember(models.Model):
+    _name = 'training.class.member'
+
+    name = fields.Char('Nama Peserta')
+    hadir = fields.Boolean('Kehadiran', default=True)
+    training_id = fields.Many2one('training.class', string='Training')

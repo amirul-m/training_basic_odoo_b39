@@ -71,6 +71,16 @@
                             <field name="logo" widget="image" />
                         </group>
 
+                        <notebook>
+                            <page name="page_members" string="Members">
+                                <field name="member_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="hadir"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </group>
                 </sheet>
             </form>
