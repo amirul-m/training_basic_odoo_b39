@@ -13,6 +13,6 @@ class TrainingClassWizard(models.TransientModel):
             self._context.get('active_ids'))
         new_values = {
             'name': self.name,
-            'max_person': self.max_person_
+            'max_person': self.max_person_wizard
             }
         records.write(new_values)
