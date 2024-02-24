@@ -58,6 +58,7 @@
                         <group name="group_kanan" string="Group 2">
                             <field name="active" widget="boolean_toggle" />
                             <field name="mentor_id" />
+                            <field name="phone_mentor_id" />
                             <field name="tag_ids" widget="many2many_tags"
                                 options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}" />
                             <field name="description" />

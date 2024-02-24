@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 class TrainingClass(models.Model):
     _name = 'training.class'
@@ -19,6 +20,7 @@ class TrainingClass(models.Model):
     mentor_id = fields.Many2one('res.partner', string='Mentor')
     tag_ids = fields.Many2many('res.partner.category', string='Tags')
     duration_days = fields.Integer('Durasi (Hari)', compute='_compute_duration_days')
+    phone_mentor_id = fields.Char('Phone', related='mentor_id.phone')
 
     @api.depends('start_date', 'end_datetime')
     def _compute_duration_days(self):
@@ -27,3 +29,10 @@ class TrainingClass(models.Model):
             if record.start_date and record.end_datetime:
                 total = (record.end_datetime.date() - record.start_date).days
             record.duration_days = total
+
+    @api.constrains('name', 'class_type')
+    def _constrains_name_class_type(self):
+        if self.name and self.class_type:
+            records = self.search([('name', '=', self.name), ('class_type', '=', self.class_type), ('id', '!=', self.id)])
+            if records:
+                raise ValidationError('Sudah ada Training Class dengan Nama dan Tipe yang sama')
