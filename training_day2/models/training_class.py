@@ -36,3 +36,14 @@ class TrainingClass(models.Model):
             records = self.search([('name', '=', self.name), ('class_type', '=', self.class_type), ('id', '!=', self.id)])
             if records:
                 raise ValidationError('Sudah ada Training Class dengan Nama dan Tipe yang sama')
+
+    @api.constrains('mentor_id', 'start_date')
+    def _constrains_mentor_start(self):
+        if self.mentor_id and self.start_date:
+            records = self.search([('mentor_id', '=', self.mentor_id.id), ('start_date', '=', self.start_date), ('id', '!=', self.id)])
+            if records:
+                raise ValidationError('Sudah ada Training Class dengan Mentor tsb di hari yang sama')
+    
+    @api.onchange('mentor_id', 'start_date', 'end_datetime')
+    def _onchange_for_description(self):
+        self.description = f"Mentor: {self.mentor_id.name}\nStart Date: {self.start_date}\nEnd Datetime: {self.end_datetime}"
