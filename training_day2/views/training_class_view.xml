@@ -57,17 +57,17 @@
 
                         <group name="group_kanan" string="Group 2">
                             <field name="active" widget="boolean_toggle" />
-                            <field name="mentor_id" />
+                            <field name="mentor_id" domain="[('country_id', '=', 'Indonesia')]" />
                             <field name="phone_mentor_id" />
                             <field name="tag_ids" widget="many2many_tags"
-                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}" />
-                            <field name="description" />
+                                options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}" required="mentor_id" />
+                            <field name="description" readonly="1" force_save="1" />
                         </group>
 
                         <group string="Group 3">
                             <field name="start_date" />
                             <field name="end_datetime" />
-                            <field name="training_file" />
+                            <field name="training_file" invisible="not start_date" />
                             <field name="logo" widget="image" />
                         </group>
 
