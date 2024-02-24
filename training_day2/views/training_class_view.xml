@@ -50,39 +50,41 @@
                     <button string="Confirm" name="action_confirm" type="object"
                         class="oe_highlight" invisible="state != 'draft'" />
                     <button string="Set To Draft" name="action_draft" type="object"
+                        class="oe_highlight" invisible="state != 'cancel'" />
+                    <button string="Cancel" name="action_cancel" type="object"
                         class="oe_highlight" invisible="state != 'confirm'" />
                 </header>
                 <sheet>
                     <group>
                         <group name="group_kiri" string="Group 1">
-                            <field name="name" />
-                            <field name="max_person" />
-                            <field name="duration_hour" />
+                            <field name="name" readonly="state != 'draft'" />
+                            <field name="max_person" readonly="state != 'draft'" />
+                            <field name="duration_hour" readonly="state != 'draft'" />
                             <field name="duration_days" />
-                            <field name="class_type" />
+                            <field name="class_type" readonly="state != 'draft'" />
                         </group>
 
                         <group name="group_kanan" string="Group 2">
                             <field name="active" widget="boolean_toggle" />
-                            <field name="mentor_id"
+                            <field name="mentor_id" readonly="state != 'draft'" 
                                 domain="[('country_id', '=', 'Indonesia')]" />
                             <field name="phone_mentor_id" />
-                            <field name="tag_ids" widget="many2many_tags"
+                            <field name="tag_ids" widget="many2many_tags" readonly="state != 'draft'" 
                                 options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}"
                                 required="mentor_id" />
                             <field name="description" readonly="1" force_save="1" />
                         </group>
 
                         <group string="Group 3">
-                            <field name="start_date" />
-                            <field name="end_datetime" />
-                            <field name="training_file" invisible="not start_date" />
-                            <field name="logo" widget="image" />
+                            <field name="start_date" readonly="state != 'draft'"  />
+                            <field name="end_datetime" readonly="state != 'draft'" />
+                            <field name="training_file" invisible="not start_date" readonly="state != 'draft'" />
+                            <field name="logo" widget="image" readonly="state != 'draft'" />
                         </group>
 
                         <notebook>
                             <page name="page_members" string="Members">
-                                <field name="member_ids">
+                                <field name="member_ids" readonly="state != 'draft'" >
                                     <tree editable="bottom">
                                         <field name="name" />
                                         <field name="hadir" />

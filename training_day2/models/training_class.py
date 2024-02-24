@@ -24,7 +24,8 @@ class TrainingClass(models.Model):
     member_ids = fields.One2many('training.class.member', 'training_id', string='Members')
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('confirm', 'Confirmed')
+        ('confirm', 'Confirmed'),
+        ('cancel', 'Cancelled')
     ], string='Status', default='draft')
 
     def action_confirm(self):
@@ -32,6 +33,15 @@ class TrainingClass(models.Model):
     
     def action_draft(self):
         self.state = 'draft'
+
+    def action_cancel(self):
+        self.state = 'cancel'
+    
+    def unlink(self):
+        for rec in self:
+            if rec.state != 'draft':
+                raise ValidationError('Dokumen hanya bisa dihapus ketika draft')
+        return super(TrainingClass, self).unlink()
 
     @api.depends('start_date', 'end_datetime')
     def _compute_duration_days(self):
