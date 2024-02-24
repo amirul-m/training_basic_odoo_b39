@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Define category -->
+    <record id="training_category" model="ir.module.category">
+        <field name="name">Training</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- Group Training User -->
+    <record id="training_user_group" model="res.groups">
+        <field name="name">Training: User</field>
+        <field name="category_id" ref="training_category"/>
+    </record>
+
+    <!-- Group Training Admin -->
+    <record id="training_admin_group" model="res.groups">
+        <field name="name">Training: Admin</field>
+        <field name="category_id" ref="training_category"/>
+        <field name="implied_ids" eval="[(4, ref('training_user_group'))]"/>
+    </record>
+
+</odoo>
