@@ -37,6 +37,20 @@ class TrainingClass(models.Model):
     def action_cancel(self):
         self.state = 'cancel'
     
+    def action_call_wizard(self):
+        return {
+            'name': 'Change',
+            'res_model': 'training.class.wizard',
+            'view_mode': 'form',
+            'views': [[False, 'form']],
+            'context': {
+                'active_model': self._name,
+                'active_ids': self.ids,
+            },
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }
+    
     def unlink(self):
         for rec in self:
             if rec.state != 'draft':

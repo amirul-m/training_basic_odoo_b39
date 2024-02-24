@@ -53,6 +53,8 @@
                         class="oe_highlight" invisible="state != 'cancel'" />
                     <button string="Cancel" name="action_cancel" type="object"
                         class="oe_highlight" invisible="state != 'confirm'" />
+                    <button string="Change" name="action_call_wizard" type="object"
+                        invisible="state != 'confirm'" context="{'default_name': name}" />
                 </header>
                 <sheet>
                     <group>
