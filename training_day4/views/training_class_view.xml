@@ -47,4 +47,20 @@
             </field>
         </field>
     </record>
+
+    <!-- Action window Training Class Copy -->
+    <record id="training_class_copy_action" model="ir.actions.act_window">
+        <field name="name">Training Class (Copy)</field>
+        <field name="res_model">training.class.copy</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="training_class_copy_menu"
+        name="Training Class (Copy)"
+        action="training_class_copy_action"
+        parent="training_day2.training_parent_menu"
+        sequence="2"/>
 </odoo>
