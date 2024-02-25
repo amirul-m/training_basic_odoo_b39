@@ -48,6 +48,8 @@
 
             <field name="name" position="before">
                 <field name="number" readonly="1" force_save="1" />
+                <field name="second_number" string="Nomor Kedua Versi 2.0"/>
+                <field name="third_number" string="Nomor 3"/>
             </field>
 
             <sheet position="inside">

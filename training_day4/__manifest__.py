@@ -11,6 +11,7 @@
         "security/ir.model.access.csv",
         'views/training_class_view.xml',
         'views/sale_order_report.xml',
+        'report/training_class_report.xml',
     ],
     'license': 'LGPL-3',
 }

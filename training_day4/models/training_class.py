@@ -11,6 +11,8 @@ class TrainingClass(models.Model):
     class_type = fields.Selection(required=False)
     state = fields.Selection(tracking=True)
     number = fields.Char('Number')
+    second_number = fields.Char('Second Number')
+    third_number = fields.Char('Third Number')
 
     def action_view_members(self):
         action = self.env['ir.actions.act_window']._for_xml_id(
