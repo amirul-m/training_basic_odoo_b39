@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="training_class_inherit_day4" model="ir.ui.view">
+    <record id="training_class_form_inherit_day4" model="ir.ui.view">
         <field name="name">training.class.view.form.inherit</field>
         <field name="model">training.class</field>
         <field name="inherit_id" ref="training_day2.training_class_view_form" />
@@ -14,12 +14,12 @@
             <!-- <group name="group_kiri" position="inside">
                 <field name="second_description" />
             </group> -->
-            
+
             <!-- Replace description. Hati hati! -->
             <!-- <field name="description" position="replace">
 
             </field> -->
-            
+
             <!-- Hide description -->
             <field name="description" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -30,7 +30,21 @@
                 <field name="second_description" />
             </field> -->
 
+            <xpath expr="//group/group[3]" position="inside">
+                <field name="second_description" />
+            </xpath>
+
         </field>
     </record>
 
+    <record id="training_class_tree_inherit_day4" model="ir.ui.view">
+        <field name="name">training.class.view.list.inherit</field>
+        <field name="model">training.class</field>
+        <field name="inherit_id" ref="training_day2.training_class_view_tree" />
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="state" />
+            </field>
+        </field>
+    </record>
 </odoo>
