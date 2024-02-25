@@ -5,7 +5,7 @@
     'version' : '1.0',
     'category': 'Technical',
     'website': 'https://arkana.co.id',
-    'depends': ['training_day2'],
+    'depends': ['training_day2', 'mail'],
     'data': [
         # "security/groups.xml",
         "security/ir.model.access.csv",

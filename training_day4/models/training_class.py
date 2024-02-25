@@ -3,11 +3,13 @@ from odoo.exceptions import ValidationError
 
 
 class TrainingClass(models.Model):
-    _inherit = 'training.class'
+    _name = 'training.class'
+    _inherit = ['training.class', 'mail.thread', 'mail.activity.mixin']
     
     second_description = fields.Text('Second Description')
     description = fields.Text('First Description')
     class_type = fields.Selection(required=False)
+    state = fields.Selection(tracking=True)
 
     def action_confirm(self):
         # Validasi harus ada member
