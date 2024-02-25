@@ -5,12 +5,23 @@ from odoo.exceptions import ValidationError
 class TrainingClass(models.Model):
     _name = 'training.class'
     _inherit = ['training.class', 'mail.thread', 'mail.activity.mixin']
+    _order = 'number'
     
     second_description = fields.Text('Second Description')
     description = fields.Text('First Description')
     class_type = fields.Selection(required=False)
     state = fields.Selection(tracking=True)
+    number = fields.Char('Number')
 
+    @api.model_create_multi
+    def create(self, values):
+        res = super().create(values)
+        for record in res:
+            # create sequence on save
+            record.number = self.env['ir.sequence'].next_by_code(
+                'training.class')
+        return res
+        
     def action_confirm(self):
         # Validasi harus ada member
         if not self.member_ids:
@@ -20,6 +31,9 @@ class TrainingClass(models.Model):
         
         # Fill second description
         self.second_description = 'Terkonfirmasi'
+        if not self.number:
+            self.number = self.env['ir.sequence'].next_by_code(
+                'training.class')
         
         return res
 

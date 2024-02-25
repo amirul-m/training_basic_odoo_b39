@@ -36,14 +36,18 @@
 
             <sheet position="after">
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </sheet>
 
             <field name="mentor_id" position="attributes">
                 <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </field>
+
+            <field name="name" position="before">
+                <field name="number" readonly="1" force_save="1" />
             </field>
 
         </field>
@@ -56,6 +60,9 @@
         <field name="arch" type="xml">
             <field name="active" position="after">
                 <field name="state" />
+            </field>
+            <field name="name" position="before">
+                <field name="number" />
             </field>
         </field>
     </record>
@@ -74,5 +81,5 @@
         name="Training Class (Copy)"
         action="training_class_copy_action"
         parent="training_day2.training_parent_menu"
-        sequence="2"/>
+        sequence="2" />
 </odoo>

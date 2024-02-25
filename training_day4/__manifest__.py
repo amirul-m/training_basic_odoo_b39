@@ -7,7 +7,7 @@
     'website': 'https://arkana.co.id',
     'depends': ['training_day2', 'mail'],
     'data': [
-        # "security/groups.xml",
+        "data/data.xml",
         "security/ir.model.access.csv",
         'views/training_class_view.xml',
     ],
