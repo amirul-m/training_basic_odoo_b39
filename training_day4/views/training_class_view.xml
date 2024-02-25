@@ -42,6 +42,10 @@
                 </div>
             </sheet>
 
+            <field name="mentor_id" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </field>
+
         </field>
     </record>
 
