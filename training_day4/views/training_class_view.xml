@@ -50,6 +50,15 @@
                 <field name="number" readonly="1" force_save="1" />
             </field>
 
+            <sheet position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_members" type="object"
+                        class="oe_stat_button" icon="fa-pencil" string="Member">
+                    </button>
+                </div>
+
+            </sheet>
+
         </field>
     </record>
 
@@ -82,4 +91,27 @@
         action="training_class_copy_action"
         parent="training_day2.training_parent_menu"
         sequence="2" />
+
+    <!-- Action window Training Class Member -->
+    <record id="training_class_member_action" model="ir.actions.act_window">
+        <field name="name">Training Class Member</field>
+        <field name="res_model">training.class.member</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Belum ada data</p>
+        </field>
+    </record>
+
+    <record id="training_class_member_view_tree" model="ir.ui.view">
+        <field name="name">training.class.member.view.tree</field>
+        <field name="model">training.class.member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="hadir" />
+            </tree>
+        </field>
+    </record>
 </odoo>
