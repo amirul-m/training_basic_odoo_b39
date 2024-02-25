@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherit_day4"
+        name="report_saleorder_document_inherit_day4"
+        inherit_id="sale.report_saleorder_document">
+        
+        <div id="informations" position="inside">
+            <!-- Add Origin -->
+            <div t-if="doc.origin" class="col-auto col-3 mw-100 mb-2">
+                <strong>Origin:</strong><br/>
+                <span class="m-0" t-field="doc.origin"/>
+            </div>
+        </div>
+    </template>
+
+</odoo>
